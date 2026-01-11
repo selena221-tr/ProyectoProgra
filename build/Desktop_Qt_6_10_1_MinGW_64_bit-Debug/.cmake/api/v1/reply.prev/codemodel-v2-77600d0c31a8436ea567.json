@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-5f9d11e32164d81edaab.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "proyectoDeProgramacion1",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "proyectoDeProgramacion1::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-proyectoDeProgramacion1-Debug-5e9436827d849398eee6.json",
+					"name" : "proyectoDeProgramacion1",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "proyectoDeProgramacion1_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-proyectoDeProgramacion1_autogen-Debug-47e74e092e0ec85b8289.json",
+					"name" : "proyectoDeProgramacion1_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "proyectoDeProgramacion1_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-proyectoDeProgramacion1_autogen_timestamp_deps-Debug-67f8da502e83e258d83b.json",
+					"name" : "proyectoDeProgramacion1_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/MEGA/Documents/proyectoDeProgramacion1/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug",
+		"source" : "C:/Users/MEGA/Documents/proyectoDeProgramacion1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
