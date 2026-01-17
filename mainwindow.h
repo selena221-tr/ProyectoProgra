@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QVector>
+#include <QLabel>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,9 +21,24 @@ public:
     ~MainWindow();
 
 private slots:
+
     void on_pushButton_clicked();
+
+    void on_InicioDia_clicked();
+    void on_iniciarPedido_clicked();
+    void on_btnAgregar_clicked();
+    void  botonPresionado();
+
+
+
+
+
 
 private:
     Ui::MainWindow *ui;
+
+    QVector<int> contadores;                 // cantidades por producto
+    QVector<QLabel*> labels;                  // labels de cantidades
+    QVector<QPushButton*> botonesMenos;
 };
 #endif // MAINWINDOW_H
