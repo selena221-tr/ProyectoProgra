@@ -1,0 +1,17 @@
+# Qt / CMake
+build/
+.cmake/
+.qtcreator/
+
+# Ejecutables
+*.exe
+
+# Archivos temporales
+*.TMP
+*.tmp
+*.log
+*.ninja*
+*.cmake
+
+# Archivos de respaldo
+*~

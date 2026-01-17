@@ -3,5 +3,13 @@
         <file>imagenpedido.png</file>
         <file>logo.png</file>
         <file>Imagen2.png</file>
+        <file>Frapp.png</file>
+        <file>menos.png</file>
+        <file>mas.png</file>
+        <file>caramel.png</file>
+        <file>mocha.png</file>
+        <file>capu.png</file>
+        <file>americano.png</file>
+        <file>latte.png</file>
     </qresource>
 </RCC>

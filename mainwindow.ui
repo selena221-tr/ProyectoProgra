@@ -17,11 +17,16 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>30</y>
+      <x>10</x>
+      <y>50</y>
       <width>751</width>
       <height>391</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -117,17 +122,7 @@
          <string>Día: </string>
         </property>
        </widget>
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>150</y>
-          <width>231</width>
-          <height>31</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="InicioDia">
         <property name="geometry">
          <rect>
           <x>240</x>
@@ -150,6 +145,19 @@ color: rgb(40, 25, 20);</string>
         </property>
         <property name="text">
          <string>Empecemos</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>140</y>
+          <width>251</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white; </string>
         </property>
        </widget>
       </widget>
@@ -231,11 +239,11 @@ background: rgb(198, 165, 132);
       <string notr="true">background: white; 
 </string>
      </property>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="inicioPagMenu">
       <property name="geometry">
        <rect>
         <x>-10</x>
-        <y>30</y>
+        <y>10</y>
         <width>771</width>
         <height>41</height>
        </rect>
@@ -249,6 +257,7 @@ background: rgb(198, 165, 132);
       </property>
       <property name="styleSheet">
        <string notr="true">border: 2px solid rgb(0, 0, 0); 
+background: rgba(222, 175, 110,50)
 </string>
       </property>
       <property name="text">
@@ -258,161 +267,808 @@ background: rgb(198, 165, 132);
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QFrame" name="frMocha">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>90</y>
-        <width>141</width>
-        <height>101</height>
+        <x>20</x>
+        <y>50</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbMocha">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+background-repeat: no-repeat;
+background-position: center;
+border-image: url(:/imagenes/mocha.png) 0 0 0 0 stretch stretch;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasMocha">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbMochaCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>40</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosMocha">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QFrame" name="frLatte">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>90</y>
-        <width>141</width>
-        <height>101</height>
+        <x>510</x>
+        <y>50</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbLatte">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/imagenes/latte.png) 0 0 0 0 stretch stretch;
+background-repeat: no-repeat;
+background-position: center;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasLatte">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbLatteCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosLatte">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QFrame" name="frCaramelo">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>90</y>
-        <width>141</width>
-        <height>101</height>
+        <x>260</x>
+        <y>50</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbCaramelo">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+background-repeat: no-repeat;
+background-position: center;
+border-image: url(:/imagenes/caramel.png) 0 0 0 0 stretch stretch;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasCaramelo">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbCarameloCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosCaramelo">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QFrame" name="finPagMenu">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>240</y>
-        <width>141</width>
-        <height>101</height>
+        <x>-20</x>
+        <y>320</y>
+        <width>781</width>
+        <height>61</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid black;</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QFrame" name="Sombra">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>10</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgba(0, 0, 0, 20);
+border-radius: 15px; 
+border:none; 
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="btnAgregar">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>141</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Palatino Linotype</family>
+          <pointsize>12</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">    border-radius: 20px;
+    border: 2px solid brown;
+    background-color: rgba(255, 141, 121,180);
+</string>
+        </property>
+        <property name="text">
+         <string>AGREGAR</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QFrame" name="frCapuccino">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>240</y>
-        <width>141</width>
-        <height>101</height>
+        <x>20</x>
+        <y>190</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbCapuccino">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+background-repeat: no-repeat;
+background-position: center;
+border-image: url(:/imagenes/capu.png) 0 0 0 0 stretch stretch;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasCapuccino">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbCapuccinoCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>30</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosCapuccino">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>40</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QFrame" name="frFrappe">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>240</y>
-        <width>141</width>
-        <height>101</height>
+        <x>260</x>
+        <y>190</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>PushButton</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbFrappe">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+background-repeat: no-repeat;
+background-position: center;
+border-image: url(:/imagenes/Frapp.png) 0 0 0 0 stretch stretch;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasFrappe">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbFrappeCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>40</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosFrappe">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QFrame" name="frAmericano">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>200</y>
-        <width>141</width>
-        <height>20</height>
+        <x>510</x>
+        <y>190</y>
+        <width>231</width>
+        <height>131</height>
        </rect>
       </property>
-      <property name="text">
-       <string>TextLabel</string>
+      <property name="styleSheet">
+       <string notr="true">background:rgba(0, 0, 0, 10); 
+border-color:black; 
+</string>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="lbAmericano">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>71</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/imagenes/americano.png) 0 0 0 0 stretch stretch;
+background-repeat: no-repeat;
+background-position: center;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMasAmericano">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbAmericanoCont">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>40</y>
+         <width>21</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btnMenosAmericano">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>50</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 20px; 
+    background-repeat: no-repeat;
+    background-position: center;
+border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
+
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
-     <widget class="QLabel" name="label_5">
+    </widget>
+    <widget class="QWidget" name="page_Pedido">
+     <property name="styleSheet">
+      <string notr="true">
+border-image: url(:/imagenes/imagenpedido.png) 0 0 0 0 stretch stretch;</string>
+     </property>
+     <widget class="QFrame" name="frame_5">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>350</y>
-        <width>141</width>
-        <height>20</height>
+        <x>0</x>
+        <y>0</y>
+        <width>751</width>
+        <height>391</height>
        </rect>
       </property>
-      <property name="text">
-       <string>TextLabel</string>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/imagenes/fondo.png) 0 0 0 0 stretch stretch;
+background: rgba(0,0,0,80);
+</string>
       </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>200</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
-      <property name="text">
-       <string>TextLabel</string>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>350</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>350</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>200</y>
-        <width>141</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
+      <widget class="QFrame" name="frTablon">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>20</y>
+         <width>691</width>
+         <height>351</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">    background-color: rgb(255, 255, 255);
+    border-radius: 12px;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <widget class="QLabel" name="inicioPedido">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>691</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Roman</family>
+          <pointsize>28</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 2px solid rgb(0, 0, 0); 
+background: rgba(222, 175, 110,50)
+</string>
+        </property>
+        <property name="text">
+         <string>PEDIDO</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnVolver">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>290</y>
+          <width>121</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SEGUIR COMPRANDO</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnPagar">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>290</y>
+          <width>75</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PAGAR</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnCancelar">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>290</y>
+          <width>111</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CANCELAR PEDIDO</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>
