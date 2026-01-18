@@ -12,6 +12,46 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
     contadores = {0, 0, 0, 0, 0, 0};
 
+    // PARA CAMBIAR COLORES DE LA 'page_inicioPedido' ya sea botón o label
+    QPalette palette1 = ui->inicioPedido->palette();
+    palette1.setColor(QPalette::WindowText, Qt::black);  // Color del texto
+    ui->inicioPedido->setPalette(palette1);
+
+    ui->LsumaPagar->setStyleSheet("color: black;");
+    ui->Lproductos->setStyleSheet("color: black;");
+    ui->Lcantidad->setStyleSheet("color: black;");
+    ui->Lprecio->setStyleSheet("color: black;");
+    ui->LtotalPagar->setStyleSheet("color: black;");
+
+
+    // PARA CAMBIAR COLORES DE LA 'page_menu' ya sea botón o label conf de la pag
+    QPalette palette2 = ui->inicioPagMenu->palette();
+    palette2.setColor(QPalette::WindowText, Qt::black);
+    ui->inicioPagMenu->setPalette(palette2);
+
+    ui->btnAgregar->setStyleSheet("color: black;");
+
+
+    // PARA HACER TRANSPARTENTE DE LA 'page_pedido' FRAME 5
+    ui->frame_2->setStyleSheet("background-color: transparent;");
+
+    QPalette paletteBtn1 = ui->btnCancelar->palette();
+    paletteBtn1.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnCancelar->setPalette(paletteBtn1);
+
+    QPalette paletteBtn2 = ui->btnPagar->palette();
+    paletteBtn2.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnPagar->setPalette(paletteBtn2);
+
+    QPalette paletteBtn3 = ui->btnVolver->palette();
+    paletteBtn3.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnVolver->setPalette(paletteBtn3);
+
+
+    // PARA HACER TRANSPARTENTE DE LA 'page_inicioSistema' FRAME 5
+    ui->frame_4->setStyleSheet("background-color: transparent;");
+
+
     labels = {
         ui->lbMochaCont,
         ui->lbLatteCont,
