@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>435</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>50</y>
+      <x>0</x>
+      <y>0</y>
       <width>751</width>
       <height>391</height>
      </rect>
@@ -32,7 +32,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_inicioSistema">
      <property name="styleSheet">
@@ -138,6 +138,9 @@
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border-radius: 22px; 
 background: rgb(210, 150, 95);
@@ -147,7 +150,7 @@ color: rgb(40, 25, 20);</string>
          <string>Empecemos</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="IngresoDelDia">
         <property name="geometry">
          <rect>
           <x>250</x>
@@ -164,6 +167,9 @@ color: rgb(40, 25, 20);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_inicioPedido">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-image: url(:/imagenes/Imagen2.png);
 background-repeat: no-repeat;
@@ -178,6 +184,9 @@ background-size: cover;</string>
         <width>791</width>
         <height>451</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -221,6 +230,9 @@ border-radius: 22px;
           <underline>true</underline>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: rgb(40, 25, 20);
 border-radius: 20px; 
@@ -230,11 +242,31 @@ background: rgb(198, 165, 132);
         <property name="text">
          <string>INICIAR PEDIDO</string>
         </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
        </widget>
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="menu">
+    <widget class="QWidget" name="page_nueva">
+     <property name="minimumSize">
+      <size>
+       <width>751</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>751</width>
+       <height>391</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QWidget" name="page_menu">
      <property name="styleSheet">
       <string notr="true">background: white; 
 </string>
@@ -270,7 +302,7 @@ background: rgba(222, 175, 110,50)
      <widget class="QFrame" name="frMocha">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>50</y>
         <width>231</width>
         <height>131</height>
@@ -309,11 +341,14 @@ border-image: url(:/imagenes/mocha.png) 0 0 0 0 stretch stretch;</string>
       <widget class="QPushButton" name="btnMasMocha">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>190</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -332,7 +367,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
         <rect>
          <x>140</x>
          <y>40</y>
-         <width>21</width>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -352,11 +387,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosMocha">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>90</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -374,9 +412,9 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
      <widget class="QFrame" name="frLatte">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>500</x>
         <y>50</y>
-        <width>231</width>
+        <width>241</width>
         <height>131</height>
        </rect>
       </property>
@@ -412,11 +450,14 @@ background-position: center;</string>
       <widget class="QPushButton" name="btnMasLatte">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>40</y>
+         <x>200</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -433,9 +474,9 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QLabel" name="lbLatteCont">
        <property name="geometry">
         <rect>
-         <x>140</x>
-         <y>30</y>
-         <width>21</width>
+         <x>150</x>
+         <y>40</y>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -455,11 +496,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosLatte">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>40</y>
+         <x>100</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -477,7 +521,7 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
      <widget class="QFrame" name="frCaramelo">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>250</x>
         <y>50</y>
         <width>231</width>
         <height>131</height>
@@ -516,11 +560,14 @@ border-image: url(:/imagenes/caramel.png) 0 0 0 0 stretch stretch;</string>
       <widget class="QPushButton" name="btnMasCaramelo">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>40</y>
+         <x>190</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -538,8 +585,8 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>30</y>
-         <width>21</width>
+         <y>40</y>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -559,11 +606,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosCaramelo">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>40</y>
+         <x>90</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -633,6 +683,9 @@ border:none;
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">    border-radius: 20px;
     border: 2px solid brown;
@@ -648,7 +701,7 @@ border:none;
      <widget class="QFrame" name="frCapuccino">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>190</y>
         <width>231</width>
         <height>131</height>
@@ -687,11 +740,14 @@ border-image: url(:/imagenes/capu.png) 0 0 0 0 stretch stretch;</string>
       <widget class="QPushButton" name="btnMasCapuccino">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>40</y>
+         <x>190</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -709,8 +765,8 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>30</y>
-         <width>21</width>
+         <y>40</y>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -730,11 +786,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosCapuccino">
        <property name="geometry">
         <rect>
-         <x>170</x>
-         <y>40</y>
+         <x>90</x>
+         <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -752,7 +811,7 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
      <widget class="QFrame" name="frFrappe">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>250</x>
         <y>190</y>
         <width>231</width>
         <height>131</height>
@@ -791,11 +850,14 @@ border-image: url(:/imagenes/Frapp.png) 0 0 0 0 stretch stretch;</string>
       <widget class="QPushButton" name="btnMasFrappe">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>190</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -814,7 +876,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
         <rect>
          <x>140</x>
          <y>40</y>
-         <width>21</width>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -834,11 +896,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosFrappe">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>90</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -856,9 +921,9 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
      <widget class="QFrame" name="frAmericano">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>500</x>
         <y>190</y>
-        <width>231</width>
+        <width>241</width>
         <height>131</height>
        </rect>
       </property>
@@ -894,11 +959,14 @@ background-position: center;</string>
       <widget class="QPushButton" name="btnMasAmericano">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>200</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -915,9 +983,9 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QLabel" name="lbAmericanoCont">
        <property name="geometry">
         <rect>
-         <x>140</x>
+         <x>150</x>
          <y>40</y>
-         <width>21</width>
+         <width>31</width>
          <height>41</height>
         </rect>
        </property>
@@ -937,11 +1005,14 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosAmericano">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>100</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">border-radius: 20px; 
@@ -968,7 +1039,7 @@ border-image: url(:/imagenes/imagenpedido.png) 0 0 0 0 stretch stretch;</string>
         <x>0</x>
         <y>0</y>
         <width>751</width>
-        <height>391</height>
+        <height>411</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -986,13 +1057,16 @@ background: rgba(0,0,0,80);
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>20</y>
+         <y>10</y>
          <width>691</width>
-         <height>351</height>
+         <height>371</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
-        <string notr="true">    background-color: rgb(255, 255, 255);
+        <string notr="true">    background-color: rgb(229, 217, 182);
     border-radius: 12px;</string>
        </property>
        <property name="frameShape">
@@ -1017,6 +1091,9 @@ background: rgba(0,0,0,80);
           <bold>true</bold>
          </font>
         </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">border: 2px solid rgb(0, 0, 0); 
 background: rgba(222, 175, 110,50)
@@ -1032,11 +1109,17 @@ background: rgba(222, 175, 110,50)
        <widget class="QPushButton" name="btnVolver">
         <property name="geometry">
          <rect>
-          <x>320</x>
-          <y>290</y>
-          <width>121</width>
+          <x>300</x>
+          <y>330</y>
+          <width>131</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 2px solid black;</string>
         </property>
         <property name="text">
          <string>SEGUIR COMPRANDO</string>
@@ -1046,10 +1129,16 @@ background: rgba(222, 175, 110,50)
         <property name="geometry">
          <rect>
           <x>520</x>
-          <y>290</y>
+          <y>330</y>
           <width>75</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 2px solid black;</string>
         </property>
         <property name="text">
          <string>PAGAR</string>
@@ -1058,16 +1147,979 @@ background: rgba(222, 175, 110,50)
        <widget class="QPushButton" name="btnCancelar">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>290</y>
-          <width>111</width>
+          <x>90</x>
+          <y>330</y>
+          <width>121</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 2px solid black;</string>
         </property>
         <property name="text">
          <string>CANCELAR PEDIDO</string>
         </property>
        </widget>
+       <widget class="QLabel" name="Lproductos">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>60</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>1</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Productos </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Lcantidad">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>60</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cantidad</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Lprecio">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>60</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>precio</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LtotalPagar">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>60</y>
+          <width>71</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Total a pagar</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>671</width>
+          <height>271</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 2px solid black;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_2">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_3">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_4">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_5">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_6">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_7">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>100</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_8">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>50</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_9">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>100</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_10">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>160</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_11">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>210</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_12">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>50</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_13">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>100</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_14">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>160</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_15">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>210</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_16">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>210</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_17">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>160</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_18">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>50</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_19">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>100</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_20">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>230</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_21">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>230</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_22">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>230</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Prod1">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="CantProd1">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>110</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="PrecioProd1">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>110</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="TotProd1">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>110</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>140</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>140</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>140</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Prod2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>140</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>170</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>170</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>170</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>170</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>200</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_23">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>200</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_24">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>200</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_25">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>200</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_26">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>230</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_27">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>230</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_28">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>230</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_29">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_30">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>260</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_31">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>260</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_32">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>260</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_33">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>260</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="Line" name="line_25">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>260</y>
+          <width>3</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;background-color: black;background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_26">
+        <property name="geometry">
+         <rect>
+          <x>520</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_27">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>300</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line_28">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_29">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_30">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_31">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_32">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>290</y>
+          <width>118</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: black;</string>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LsumaPagar">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>300</y>
+          <width>401</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TOTAL A PAGAR </string>
+        </property>
+       </widget>
+       <zorder>label_9</zorder>
+       <zorder>inicioPedido</zorder>
+       <zorder>btnVolver</zorder>
+       <zorder>btnPagar</zorder>
+       <zorder>btnCancelar</zorder>
+       <zorder>Lcantidad</zorder>
+       <zorder>Lprecio</zorder>
+       <zorder>LtotalPagar</zorder>
+       <zorder>line</zorder>
+       <zorder>line_2</zorder>
+       <zorder>line_3</zorder>
+       <zorder>line_4</zorder>
+       <zorder>line_5</zorder>
+       <zorder>line_6</zorder>
+       <zorder>line_7</zorder>
+       <zorder>line_8</zorder>
+       <zorder>line_9</zorder>
+       <zorder>line_10</zorder>
+       <zorder>line_11</zorder>
+       <zorder>line_12</zorder>
+       <zorder>line_13</zorder>
+       <zorder>line_14</zorder>
+       <zorder>line_15</zorder>
+       <zorder>line_16</zorder>
+       <zorder>line_17</zorder>
+       <zorder>line_18</zorder>
+       <zorder>line_19</zorder>
+       <zorder>line_20</zorder>
+       <zorder>line_21</zorder>
+       <zorder>line_22</zorder>
+       <zorder>Prod1</zorder>
+       <zorder>CantProd1</zorder>
+       <zorder>PrecioProd1</zorder>
+       <zorder>TotProd1</zorder>
+       <zorder>Lproductos</zorder>
+       <zorder>label_14</zorder>
+       <zorder>label_15</zorder>
+       <zorder>label_16</zorder>
+       <zorder>Prod2</zorder>
+       <zorder>label_18</zorder>
+       <zorder>label_19</zorder>
+       <zorder>label_20</zorder>
+       <zorder>label_21</zorder>
+       <zorder>label_22</zorder>
+       <zorder>label_23</zorder>
+       <zorder>label_24</zorder>
+       <zorder>label_25</zorder>
+       <zorder>label_26</zorder>
+       <zorder>label_27</zorder>
+       <zorder>label_28</zorder>
+       <zorder>label_29</zorder>
+       <zorder>label_30</zorder>
+       <zorder>label_31</zorder>
+       <zorder>label_32</zorder>
+       <zorder>label_33</zorder>
+       <zorder>line_25</zorder>
+       <zorder>line_26</zorder>
+       <zorder>line_27</zorder>
+       <zorder>label_5</zorder>
+       <zorder>line_28</zorder>
+       <zorder>line_29</zorder>
+       <zorder>line_30</zorder>
+       <zorder>line_31</zorder>
+       <zorder>line_32</zorder>
+       <zorder>LsumaPagar</zorder>
       </widget>
      </widget>
     </widget>
@@ -1079,7 +2131,7 @@ background: rgba(222, 175, 110,50)
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

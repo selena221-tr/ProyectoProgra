@@ -11,5 +11,6 @@
         <file>capu.png</file>
         <file>americano.png</file>
         <file>latte.png</file>
+        <file>fondoCafe.png</file>
     </qresource>
 </RCC>

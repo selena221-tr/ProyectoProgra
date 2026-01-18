@@ -23,16 +23,13 @@ public:
 private slots:
 
     void on_pushButton_clicked();
-
     void on_InicioDia_clicked();
     void on_iniciarPedido_clicked();
     void on_btnAgregar_clicked();
-    void  botonPresionado();
-
-
-
-
-
+    void on_btnVolver_clicked();
+    void on_btnPagar_clicked();
+    void on_btnCancelar_clicked();
+    void botonPresionado();
 
 private:
     Ui::MainWindow *ui;
