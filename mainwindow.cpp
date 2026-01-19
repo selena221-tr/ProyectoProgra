@@ -151,7 +151,7 @@ void MainWindow::on_btnCancelar_clicked() {
 }
 
 void MainWindow::on_btnPagar_clicked() {
-
+    QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
 }
 
 //ESTO ES PARA TODO EL MainWindow, Y ES PARA TODOS LO BOTONES QUE SON APLASTADOS
