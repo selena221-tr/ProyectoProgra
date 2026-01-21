@@ -5,5 +5,6 @@ CRUD de uin sitema de cafetería
 
 ## Authors
 
-- [@moncayoHaziel](https://www.github.com/moncayoHaziel)
-- 
+- [@Haziel1357](https://www.github.com/moncayoHaziel)
+- [@morenojacomedanna-sys](https://www.github.com/morenojacomedanna)
+- [@selena221](https://www.github.com/selelema211610alexa)
