@@ -31,6 +31,8 @@ private slots:
     void on_btnCancelar_clicked();
     void botonPresionado();
 
+    void on_comboBox_2_activated(int index);
+
 private:
     Ui::MainWindow *ui;
 

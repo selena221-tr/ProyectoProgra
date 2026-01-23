@@ -12,46 +12,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
     contadores = {0, 0, 0, 0, 0, 0};
 
-    // PARA CAMBIAR COLORES DE LA 'page_inicioPedido' ya sea botón o label
-    QPalette palette1 = ui->inicioPedido->palette();
-    palette1.setColor(QPalette::WindowText, Qt::black);  // Color del texto
-    ui->inicioPedido->setPalette(palette1);
-
-    ui->LsumaPagar->setStyleSheet("color: black;");
-    ui->Lproductos->setStyleSheet("color: black;");
-    ui->Lcantidad->setStyleSheet("color: black;");
-    ui->Lprecio->setStyleSheet("color: black;");
-    ui->LtotalPagar->setStyleSheet("color: black;");
-
-
-    // PARA CAMBIAR COLORES DE LA 'page_menu' ya sea botón o label conf de la pag
-    QPalette palette2 = ui->inicioPagMenu->palette();
-    palette2.setColor(QPalette::WindowText, Qt::black);
-    ui->inicioPagMenu->setPalette(palette2);
-
-    ui->btnAgregar->setStyleSheet("color: black;");
-
-
-    // PARA HACER TRANSPARTENTE DE LA 'page_pedido' FRAME 5
-    ui->frame_2->setStyleSheet("background-color: transparent;");
-
-    QPalette paletteBtn1 = ui->btnCancelar->palette();
-    paletteBtn1.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnCancelar->setPalette(paletteBtn1);
-
-    QPalette paletteBtn2 = ui->btnPagar->palette();
-    paletteBtn2.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnPagar->setPalette(paletteBtn2);
-
-    QPalette paletteBtn3 = ui->btnVolver->palette();
-    paletteBtn3.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnVolver->setPalette(paletteBtn3);
-
-
-    // PARA HACER TRANSPARTENTE DE LA 'page_inicioSistema' FRAME 5
-    ui->frame_4->setStyleSheet("background-color: transparent;");
-
-
     labels = {
         ui->lbMochaCont,
         ui->lbLatteCont,
@@ -136,7 +96,16 @@ void MainWindow::on_iniciarPedido_clicked(){
 
 //ESTO VA A SER LA EDICIÓN DE LA TERCERA PESTAÑA ******* 'page_menu' *******
 void MainWindow::on_btnAgregar_clicked(){
-    ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
+    int Vacio = 0;
+    for (int i = 0; i < contadores.size(); i++){
+        Vacio += contadores[i];
+    }
+    if (Vacio == 0){
+        QMessageBox::warning(this, "Error", "No existe ningún producto seleccionado");
+        return;
+    }else{
+        ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
+    }
 }
 
 
@@ -147,11 +116,26 @@ void MainWindow::on_btnVolver_clicked() {
 }
 
 void MainWindow::on_btnCancelar_clicked() {
-    ui->stackedWidget->setCurrentWidget(ui->page_menu);
+    // Regresa al MENÚ, no a la página de pedido donde ya estás
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+
+    // Limpia solo los datos que guardaste en el vector 'labels'
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
+        contadores[i] = 0;  //los contadores pa calcular el pago
+        labels[i]->setText("0");    // y los Labels de los contadores
+        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
+    }
 }
+
 
 void MainWindow::on_btnPagar_clicked() {
     QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
+        contadores[i] = 0; //los contadores pa calcular el pago
+        labels[i]->setText("0"); // y los Labels de los contadores
+        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
+    }
 }
 
 //ESTO ES PARA TODO EL MainWindow, Y ES PARA TODOS LO BOTONES QUE SON APLASTADOS
@@ -194,15 +178,52 @@ MainWindow::~MainWindow() // en si es para la memoria, se elimina a si mismo cua
     delete ui;
 }
 
+void MainWindow::on_comboBox_2_activated(int index) {
 
+    QPoint topLeftPosition(10, 10); // Coordenadas X=10, Y=10
 
+    //para ocultar todos los widgets antes que nada.
+    ui->frAmericano->setVisible(false);
+    ui->frCapuccino->setVisible(false);
+    ui->frCaramelo->setVisible(false);
+    ui->frFrappe->setVisible(false);
+    ui->frLatte->setVisible(false);
+    ui->frMocha->setVisible(false);
+
+    QWidget *posicion = nullptr; // el * es el puntero
+                                     // 'posicion' es mi variable
+                                 // el 'nullptr' es para que se declare con un valor en nulo
+
+    switch (index) {
+    case 0: // Opción "Todos"
+        ui->frAmericano->setVisible(true);
+        ui->frCapuccino->setVisible(true);
+        ui->frCaramelo->setVisible(true);
+        ui->frFrappe->setVisible(true);
+        ui->frLatte->setVisible(true);
+        ui->frMocha->setVisible(true);
+        break;
+    case 1: // Opción "Mocha"
+        ui->frMocha->setVisible(true);
+        break;
+    case 2: // Opción "Capuccino"
+        ui->frCapuccino->setVisible(true);
+        break;
+    case 3: // Opción "Macchiato"
+        ui->frCaramelo->setVisible(true);
+        break;
+        // Puedes añadir más casos aquí para otros índices (ej: case 3:)
+    }
+}
 
 
 // pa que o que?
-void MainWindow::on_pushButton_clicked()
-{
+void MainWindow::on_pushButton_clicked() {
     QMessageBox::information(this, "Sistema Cafetería", "Fecha ingresada correctamente. ¡Bienvenido!");
 }
+
+
+
 
 
 
