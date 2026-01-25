@@ -35,7 +35,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_inicioSistema">
      <property name="styleSheet">
@@ -287,6 +287,26 @@ background: rgb(198, 165, 132);
          <bool>false</bool>
         </property>
        </widget>
+      </widget>
+      <widget class="QPushButton" name="btnapagar">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>30</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/imagenes/boton.png);
+background: rgba(0,0,0,0)</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -750,7 +770,7 @@ font-size: 20px;
       <widget class="QFrame" name="Sombra">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>420</x>
          <y>10</y>
          <width>151</width>
          <height>51</height>
@@ -796,6 +816,58 @@ border:none;
         </property>
         <property name="text">
          <string>AGREGAR</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="Sombra_2">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>10</y>
+         <width>151</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background: rgba(0, 0, 0, 20);
+border-radius: 15px; 
+border:none; 
+</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="btnRegresar">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>141</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Palatino Linotype</family>
+          <pointsize>12</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">    border-radius: 20px;
+    border: 2px solid brown;
+    background-color: rgba(255, 141, 121,180);
+	color: black;
+</string>
+        </property>
+        <property name="text">
+         <string>REGRESAR</string>
         </property>
        </widget>
       </widget>
@@ -1640,7 +1712,7 @@ color: black;</string>
         </attribute>
         <column>
          <property name="text">
-          <string notr="true">Cantidad</string>
+          <string notr="true">Productos</string>
          </property>
          <property name="font">
           <font>
@@ -1661,7 +1733,7 @@ color: black;</string>
         </column>
         <column>
          <property name="text">
-          <string notr="true">Productos</string>
+          <string notr="true">Cantidad</string>
          </property>
          <property name="font">
           <font>

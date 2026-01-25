@@ -4,19 +4,23 @@
 #include <QMessageBox>  // ← AGREGADO (para mostrar los mensajes)
 #include <QPushButton>  // ← AGREGADO (para qobject_cast<QPushButton*>)
 #include <QLabel>       // ← AGREGADO (para los labels)
-#include <QLineEdit>    // ← AGREGADO (para ui->lineEdit)
 #include <QDate>        // ← AGREGADO (para mostrar fecha actual)
 #include <QFile>        //Para incluir archivos
+#include <QLineEdit>    //Para que el usuario pueda escribir
+#include <QInputDialog> //Para que salga la alerta con diálogo
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
     ui->setupUi(this);
     contadores = {0, 0, 0, 0, 0, 0};
 
-    ui->labelDescripcion->setVisible(false);
-    ui->labelDescripcion->setWordWrap(true);
+    ui->labelDescripcion->setVisible(false); // para que no se vea cuando el programa corra
+    ui->labelDescripcion->setWordWrap(true); // para que se ajuste al label
 
     // BOTONES Y ACCIONES
+
+    nombres = {"Mocha","Latte","Capuccino","Americano","Caramelo","Frappe"};
+
     labels = {
         ui->lbMochaCont,
         ui->lbLatteCont,
@@ -35,48 +39,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
         ui->btnMenosFrappe
     };
 
-    ui->btnMasMocha->setProperty("labelID", 0);
-    ui->btnMasLatte->setProperty("labelID", 1);
-    ui->btnMasCapuccino->setProperty("labelID", 2);
-    ui->btnMasAmericano->setProperty("labelID", 3);
-    ui->btnMasCaramelo->setProperty("labelID", 4);
-    ui->btnMasFrappe->setProperty("labelID", 5);
+    botonesMas = {
+        ui->btnMasMocha,
+        ui->btnMasLatte,
+        ui->btnMasCapuccino,
+        ui->btnMasAmericano,
+        ui->btnMasCaramelo,
+        ui->btnMasFrappe
+    };
 
-    ui->btnMenosMocha->setProperty("labelID", 0);
-    ui->btnMenosLatte->setProperty("labelID", 1);
-    ui->btnMenosCapuccino->setProperty("labelID", 2);
-    ui->btnMenosAmericano->setProperty("labelID", 3);
-    ui->btnMenosCaramelo->setProperty("labelID", 4);
-    ui->btnMenosFrappe->setProperty("labelID", 5);
-
-    ui->btnMasMocha->setProperty("accion", 0);
-    ui->btnMasLatte->setProperty("accion", 0);
-    ui->btnMasCapuccino->setProperty("accion", 0);
-    ui->btnMasAmericano->setProperty("accion", 0);
-    ui->btnMasCaramelo->setProperty("accion", 0);
-    ui->btnMasFrappe->setProperty("accion", 0);
-
-    ui->btnMenosMocha->setProperty("accion", 1);
-    ui->btnMenosLatte->setProperty("accion", 1);
-    ui->btnMenosCapuccino->setProperty("accion", 1);
-    ui->btnMenosAmericano->setProperty("accion", 1);
-    ui->btnMenosCaramelo->setProperty("accion", 1);
-    ui->btnMenosFrappe->setProperty("accion", 1);
-
-    connect(ui->btnMasMocha,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMasLatte,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMasCapuccino,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMasAmericano,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMasCaramelo,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMasFrappe,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-
-    connect(ui->btnMenosMocha,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMenosLatte,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMenosCapuccino,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMenosAmericano,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMenosCaramelo,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-    connect(ui->btnMenosFrappe,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-
+    for (int i =0; i<botonesMenos.size(); i++){
+        botonesMenos[i]->setProperty("labelID", i);
+        botonesMas[i]->setProperty("labelID", i);
+        botonesMas[i]->setProperty("accion", 0);
+        botonesMenos[i]->setProperty("accion",1);
+        connect(botonesMas[i],  &QPushButton::clicked, this, &MainWindow::botonPresionado);
+        connect(botonesMenos[i],  &QPushButton::clicked, this, &MainWindow::botonPresionado);
+    }
 }
 
 void MainWindow::on_InicioDia_clicked() {
@@ -104,7 +83,6 @@ void MainWindow::on_btnAgregar_clicked(){
     } else {
         ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
     }
-
 }
 
 
@@ -114,7 +92,7 @@ void MainWindow::on_btnVolver_clicked() {
 }
 
 void MainWindow::on_btnCancelar_clicked() {
-    ui->stackedWidget->setCurrentWidget(ui->page_menu);
+    //ui->stackedWidget->setCurrentWidget(ui->page_menu);
     // Regresa al MENÚ, no a la página de pedido donde ya estás
     ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
 
@@ -177,12 +155,12 @@ void MainWindow::actualizarFactura(){
             double iva = subtotal*1.12; //hacemos que se calcule el iva
             totalFinal += iva; //con esta operacion logramos el total final, final.
 
-            int fila = ui->facturaTabla->rowCount();
-            ui->facturaTabla->insertRow(fila);
+            int fila = ui->facturaTabla->rowCount(); // asignar la columnas correctas
+            ui->facturaTabla->insertRow(fila); // Row = fila
 
             //con lo siguiente se llenan las columnas: cantidad, producto, precio, subtotal
-            ui->facturaTabla->setItem(fila, 0, new QTableWidgetItem(QString::number(contadores[i])));
-            ui->facturaTabla->setItem(fila, 1, new QTableWidgetItem(nombres[i]));
+            ui->facturaTabla->setItem(fila, 0, new QTableWidgetItem(nombres[i]));
+            ui->facturaTabla->setItem(fila, 1, new QTableWidgetItem(QString::number(contadores[i])));
             ui->facturaTabla->setItem(fila, 2, new QTableWidgetItem("$"+QString::number(precios[i], 'f', 2)));
             ui->facturaTabla->setItem(fila, 3, new QTableWidgetItem("$"+QString::number(subtotal, 'f', 2)));
         }                                                                                       //fuerza a que salgan 2 decimales, lo estandar para dinero
@@ -190,13 +168,12 @@ void MainWindow::actualizarFactura(){
 
     //actualizamos el label del total final para que muestre el monto total
     ui->label_5->setText("$"+QString::number(totalFinal, 'f',2));
-    ui->label_5->setStyleSheet("color: black; font-weight: bold;");
     // Esto quita bordes negros y asegura que el fondo sea limpio
 }
 
 void MainWindow::guardarDatosArchivo(){
 
-    QFile archivo("factura.txt");     //fstream archivo(ruta)
+    QFile archivo("factura.txt");     //fstream archivo(ruta!!)
     if (!archivo.open(QIODevice::Append|QIODevice::Text)){   //Si el archivo no se abre(en modo agregar lineas, no reescribir y considerado un texto plano)
         qDebug()<<"Registro no encontrado"; //Uso qDebug que es un objeto parte de la clase QDebug, equivale a un cerr/cout en c++
         return;
@@ -207,27 +184,28 @@ void MainWindow::guardarDatosArchivo(){
     int columnas = ui->facturaTabla->columnCount();
 
     for (int i = 0; i < filas; i++) {
-        agregar<<ui->Dia->date().toString("yyyy-MM-dd") << ";"; // saco la fecha del dateEdit en forma de cadena con un formato
+        agregar<<ui->Dia->date().toString("yyyy-MM-dd") << ";";     // saco la fecha del dateEdit en forma de cadena con un formato
         for (int j = 0; j < columnas; j++) {
             QTableWidgetItem *item = ui->facturaTabla->item(i, j);
             //QTable WidgetItem es un objeto que representa una celda de la tabla, guarda TODA la info de la celda (color, alineación, texto)
             //item es un puntero  a una celda, guarda la direccion de memoria de una celda en una posicion i, j de la tabla
             //(usamos puntero porque en esta posicion puede estar vacia)
             if (item) {  //si item no esta vacio
-                QString dato = item->text(); //Variable string dato que contiene el texto del item
-                agregar<<dato;
+                QString dato = item->text(); //Variable string dato que contiene el texto del item, coge text pa poner
+                agregar << dato;
             }
-            if (j < columnas - 1){
+            if (j < columnas - 1){ // para que al final no se ponga un ";"
                 agregar<<";";
             }
         }
-        agregar<<"\n";
+        agregar<<"\n"; // dar un "enter" para la siguiente fila
     }
-    archivo.close();
+    archivo.close(); // cerrar para que no consuma más recursos de la compu
 }
 
 void MainWindow::on_btnPagar_clicked() {
-    QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
+    guardarDatosArchivo();
+    QMessageBox::information(this, "Pago", "¡Pagó realizado con éxito!");
     ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
     for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
         contadores[i] = 0; //los contadores pa calcular el pago
@@ -236,12 +214,11 @@ void MainWindow::on_btnPagar_clicked() {
     }
 }
 
-
-MainWindow::~MainWindow() {// en si es para la memoria, se elimina a si mismo cuando se cierra el programa
-    delete ui;
+MainWindow::~MainWindow() {// en si es para el rendimiento de la memoria, se elimina a si mismo cuando se
+    delete ui;             //cierra el programa
 }
 
-void MainWindow::on_comboBox_activated(int index) {
+void MainWindow::on_comboBox_activated(int menu) {
 
     QPoint topLeftPosition(10, 50); // Coordenadas donde se mueve el seleccionado
 
@@ -255,11 +232,13 @@ void MainWindow::on_comboBox_activated(int index) {
 
     // Ocultar el label de descripción por defecto
 
+    QWidget *posicion = nullptr; // el * es el puntero
+                                 // 'posicion' es mi variable
+                                 // el 'nullptr' es para que se declare con un valor en nulo
+                                 // Inicializando para que se inicie en nulo.
 
-    QWidget *posicion = nullptr;
-
-    switch (index) {
-    case 0: // Opción "Todos"
+    switch (menu) {
+    case 0: // Opción "ninguno"
         // ====== TUS POSICIONES ORIGINALES ======
         // Fila 1
         ui->frMocha->move(10, 50);        // CAFFE MOCHA
@@ -298,7 +277,6 @@ void MainWindow::on_comboBox_activated(int index) {
 
         ui->labelDescripcion->setText(textoDescripcion);
         ui->labelDescripcion->setVisible(true);
-        ui->labelDescripcion->setWordWrap(true);
         break;
     }
 
@@ -377,10 +355,10 @@ void MainWindow::on_comboBox_activated(int index) {
 
     case 6: // Opción "Americano"
     {
-        ui->frAmericano->setVisible(true);
-        posicion = ui->frAmericano;
+        ui->frAmericano->setVisible(true); // pone para que se vea el frame
+        posicion = ui->frAmericano; // Para ponerle en una posición
 
-        QString textoDescripcion =
+        QString textoDescripcion = // crear un texto
             "Caffe Americano: \n\n"
             " Un dato curioso de Estados Unidos es que, a pesar de ser la "
             " cuna del inglés, no tiene un idioma oficial establecido a "
@@ -389,14 +367,83 @@ void MainWindow::on_comboBox_activated(int index) {
             " cultural. Además, los estadounidenses devoran unos 350 "
             " porciones de pizza cada segundo.";
 
-        ui->labelDescripcion->setText(textoDescripcion);
-        ui->labelDescripcion->setVisible(true);
+        ui->labelDescripcion->setText(textoDescripcion); // asignamos el texto creado con antelación
+        ui->labelDescripcion->setVisible(true); // que se pueda ver el labelDescripción, ya asignado el texto obviamente
         break;
     }
     }
 
-    if (posicion != nullptr) {
-        posicion->move(topLeftPosition);
-        posicion->raise();
+    if (posicion != nullptr) { // como ya el valor del posición no es nulo se ejecuta
+        posicion->move(topLeftPosition); // mueve a la posición delcara con antelación (10, 50) x,y
+        posicion->raise(); // hace que el label se ponga por encima de todos los elementos que estén
     }
 }
+
+void MainWindow::resumen(){
+    float total=0;
+    contadoresInforme = QVector<int>(nombres.size(), 0);
+    int indiceMejor=0;
+    QFile archivo("factura.txt");
+    if (!archivo.open(QIODevice::ReadOnly|QIODevice::Text)){
+        qDebug()<<"Registro no encontrado";
+        //return;
+    }
+    QTextStream leer(&archivo);
+    while (!leer.atEnd()){
+        QString linea= leer.readLine();
+        QStringList datos = linea.split(";");
+        if (datos.size()<5) continue;
+
+        total=total+datos[4].remove("$").toFloat();
+        for (int i=0; i<nombres.size(); i++){
+            if (datos[2]==nombres[i]){
+                contadoresInforme[i]++;
+                break;
+            }
+        }
+
+    }
+    for (int j=1; j<contadoresInforme.size(); j++){
+        if (contadoresInforme[j]>contadoresInforme[indiceMejor]){
+            indiceMejor=j;
+        }
+    }
+    archivo.close();
+
+    QString info= "Producto mejor vendido en el día: " + nombres[indiceMejor] + "\n"
+                                                                                 "Total recaudado: $" + QString::number(total, 'f', 2);
+    QMessageBox::information(this, "Resumen", info);
+
+
+}
+
+void MainWindow::on_btnRegresar_clicked() {
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+
+    // Limpia solo los datos que guardaste en el vector 'labels'
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
+        contadores[i] = 0;  //los contadores pa calcular el pago
+        labels[i]->setText("0");    // y los Labels de los contadores
+        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
+    }
+}
+
+
+void MainWindow::on_btnapagar_clicked() {
+    bool ok;
+    QMessageBox::StandardButton respuesta; // es un tipo de dato para que el usuario pueda escoger enytre si o no
+    QString password = QInputDialog::getText(this, "Acceso", "Ingrese la contraseña:", QLineEdit::Password, "", &ok);
+    if (ok) {
+        if (password == "1234") {
+            respuesta = QMessageBox::question(this, "Informe", "¿Desea ver el informe?", QMessageBox::Yes | QMessageBox::No);
+            if (respuesta == QMessageBox::Yes) {
+                resumen();
+            }
+        } else {
+            QMessageBox::warning(this, "Error", "Contraseña incorrecta");
+        }
+    QMessageBox::warning(this, "Saliendo", "Muchas gracias...");
+    qApp->quit(); // cierra la aplicación
+    }
+}
+

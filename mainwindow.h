@@ -30,19 +30,25 @@ private slots:
     void on_btnCancelar_clicked();
     void botonPresionado();
     void guardarDatosArchivo();
-
-    //void on_comboBox_2_activated(int index);
-
-    void on_facturaTabla_cellActivated(int row, int column);
-
+    void actualizarFactura();
+    void resumen();
     void on_comboBox_activated(int index);
+
+    void on_pushButton_clicked();
+
+    void on_btnRegresar_clicked();
+
+    void on_btnapagar_clicked();
 
 private:
     Ui::MainWindow *ui;
-
+    QVector<QString> nombres;
+    QVector<int> contadoresInforme;
     QVector<int> contadores;                 // cantidades por producto
     QVector<QLabel*> labels;                  // labels de cantidades
     QVector<QPushButton*> botonesMenos;
-    void actualizarFactura();
+    QVector<QPushButton*> botonesMas;
+
+
 };
 #endif // MAINWINDOW_H
