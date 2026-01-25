@@ -31,7 +31,7 @@ private slots:
     void on_btnCancelar_clicked();
     void botonPresionado();
 
-    void on_comboBox_2_activated(int index);
+    //void on_comboBox_2_activated(int index);
 
 private:
     Ui::MainWindow *ui;
@@ -39,5 +39,6 @@ private:
     QVector<int> contadores;                 // cantidades por producto
     QVector<QLabel*> labels;                  // labels de cantidades
     QVector<QPushButton*> botonesMenos;
+    void actualizarFactura();
 };
 #endif // MAINWINDOW_H

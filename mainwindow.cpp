@@ -1,7 +1,7 @@
 #include <QMainWindow>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include <QMessageBox>
+#include <QMessageBox>  // ← AGREGADO (para mostrar los mensajes)
 #include <QPushButton>  // ← AGREGADO (para qobject_cast<QPushButton*>)
 #include <QLabel>       // ← AGREGADO (para los labels)
 #include <QLineEdit>    // ← AGREGADO (para ui->lineEdit)
@@ -12,6 +12,42 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
     contadores = {0, 0, 0, 0, 0, 0};
 
+    // PARA CAMBIAR COLORES DE LA 'page_inicioPedido' ya sea botón o label
+    QPalette palette1 = ui->inicioPedido->palette();
+    palette1.setColor(QPalette::WindowText, Qt::black);  // Color del texto
+    ui->inicioPedido->setPalette(palette1);
+
+    ui->LsumaPagar->setStyleSheet("color: black;");
+
+
+    // PARA CAMBIAR COLORES DE LA 'page_menu' ya sea botón o label conf de la pag
+    QPalette palette2 = ui->inicioPagMenu->palette();
+    palette2.setColor(QPalette::WindowText, Qt::black);
+    ui->inicioPagMenu->setPalette(palette2);
+
+    ui->btnAgregar->setStyleSheet("color: black;");
+
+
+    // PARA HACER TRANSPARTENTE DE LA 'page_pedido' FRAME 5
+    ui->frame_2->setStyleSheet("background-color: transparent;");
+
+    QPalette paletteBtn1 = ui->btnCancelar->palette();
+    paletteBtn1.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnCancelar->setPalette(paletteBtn1);
+
+    QPalette paletteBtn2 = ui->btnPagar->palette();
+    paletteBtn2.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnPagar->setPalette(paletteBtn2);
+
+    QPalette paletteBtn3 = ui->btnVolver->palette();
+    paletteBtn3.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
+    ui->btnVolver->setPalette(paletteBtn3);
+
+
+    // PARA HACER TRANSPARTENTE DE LA 'page_inicioSistema' FRAME 5
+    ui->frame_4->setStyleSheet("background-color: transparent;");
+
+    // BOTONES Y ACCIONES
     labels = {
         ui->lbMochaCont,
         ui->lbLatteCont,
@@ -72,7 +108,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     connect(ui->btnMenosCaramelo,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
     connect(ui->btnMenosFrappe,  &QPushButton::clicked, this, &MainWindow::botonPresionado);
 
-
 }
 
 //ESTO VA A SER LA EDICIÓN DE LA PRIMERA PESTAÑA ******* 'page_inicioSistema' *******
@@ -86,28 +121,17 @@ void MainWindow::on_InicioDia_clicked() {
 }
 
 
-
 //ESTO VA A SER LA EDICIÓN DE LA SEGUNDA PESTAÑA ******* 'page_inicioPedido' *******
 void MainWindow::on_iniciarPedido_clicked(){
     ui->stackedWidget->setCurrentWidget(ui->page_menu);
 }
 
 
-
 //ESTO VA A SER LA EDICIÓN DE LA TERCERA PESTAÑA ******* 'page_menu' *******
 void MainWindow::on_btnAgregar_clicked(){
-    int Vacio = 0;
-    for (int i = 0; i < contadores.size(); i++){
-        Vacio += contadores[i];
-    }
-    if (Vacio == 0){
-        QMessageBox::warning(this, "Error", "No existe ningún producto seleccionado");
-        return;
-    }else{
-        ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
-    }
+    actualizarFactura(); //se llama a la funcion antes de cambiar de página
+    ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
 }
-
 
 
 //ESTO VA A SER LA EDICIÓN DE LA CUARTA PESTAÑA ******* 'page_pedido' *******
@@ -116,26 +140,11 @@ void MainWindow::on_btnVolver_clicked() {
 }
 
 void MainWindow::on_btnCancelar_clicked() {
-    // Regresa al MENÚ, no a la página de pedido donde ya estás
-    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
-
-    // Limpia solo los datos que guardaste en el vector 'labels'
-    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
-        contadores[i] = 0;  //los contadores pa calcular el pago
-        labels[i]->setText("0");    // y los Labels de los contadores
-        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
-    }
+    ui->stackedWidget->setCurrentWidget(ui->page_menu);
 }
-
 
 void MainWindow::on_btnPagar_clicked() {
     QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
-    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
-    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
-        contadores[i] = 0; //los contadores pa calcular el pago
-        labels[i]->setText("0"); // y los Labels de los contadores
-        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
-    }
 }
 
 //ESTO ES PARA TODO EL MainWindow, Y ES PARA TODOS LO BOTONES QUE SON APLASTADOS
@@ -172,59 +181,46 @@ void MainWindow::botonPresionado() { // cuando cualquiera de los botones es prec
     }
 }
 
+void MainWindow::actualizarFactura(){
+    //primero la tabla se limpia para que no se repitan los datos
+    ui->facturaTabla->setRowCount(0);
+
+    //se declaran los datos que usamos para llenar la tabla(los productos del menu y sus precios, ya establecidos)
+    QVector<QString> nombres = {"Mocha","Latte","Capuccino","Americano","Caramelo","Frappe"};
+    QVector<double> precios = {3.50, 3.00, 3.50, 2.50, 4.00, 4.50};
+    double totalFinal = 0;
+
+    //con un for recorremos los contadores para ver que productos si mostrar
+    for(int i = 0; i<contadores.size();i++){
+        if(contadores[i]>0){ //Si hay algo, se procedera a calcular su precio(subtotal).
+            double subtotal = contadores[i]*precios[i];
+            double iva = subtotal*1.12; //hacemos que se calcule el iva
+            totalFinal += iva; //con esta operacion logramos el total final, final.
+
+            int fila = ui->facturaTabla->rowCount();
+            ui->facturaTabla->insertRow(fila);
+
+            //con lo siguiente se llenan las columnas: cantidad, producto, precio, subtotal
+            ui->facturaTabla->setItem(fila, 0, new QTableWidgetItem(QString::number(contadores[i])));
+            ui->facturaTabla->setItem(fila, 1, new QTableWidgetItem(nombres[i]));
+            ui->facturaTabla->setItem(fila, 2, new QTableWidgetItem("$"+QString::number(precios[i], 'f', 2)));
+            ui->facturaTabla->setItem(fila, 3, new QTableWidgetItem("$"+QString::number(subtotal, 'f', 2)));
+        }                                                                                       //fuerza a que salgan 2 decimales, lo estandar para dinero
+    }
+
+    //actualizamos el label del total final para que muestre el monto total
+    ui->label_5->setText("$"+QString::number(totalFinal, 'f',2));
+    ui->label_5->setStyleSheet("color: black; font-weight: bold;");
+    // Esto quita bordes negros y asegura que el fondo sea limpio
+}
 
 MainWindow::~MainWindow() // en si es para la memoria, se elimina a si mismo cuando se cierra el programa
 {
     delete ui;
 }
 
-void MainWindow::on_comboBox_2_activated(int index) {
-
-    QPoint topLeftPosition(10, 10); // Coordenadas X=10, Y=10
-
-    //para ocultar todos los widgets antes que nada.
-    ui->frAmericano->setVisible(false);
-    ui->frCapuccino->setVisible(false);
-    ui->frCaramelo->setVisible(false);
-    ui->frFrappe->setVisible(false);
-    ui->frLatte->setVisible(false);
-    ui->frMocha->setVisible(false);
-
-    QWidget *posicion = nullptr; // el * es el puntero
-                                     // 'posicion' es mi variable
-                                 // el 'nullptr' es para que se declare con un valor en nulo
-
-    switch (index) {
-    case 0: // Opción "Todos"
-        ui->frAmericano->setVisible(true);
-        ui->frCapuccino->setVisible(true);
-        ui->frCaramelo->setVisible(true);
-        ui->frFrappe->setVisible(true);
-        ui->frLatte->setVisible(true);
-        ui->frMocha->setVisible(true);
-        break;
-    case 1: // Opción "Mocha"
-        ui->frMocha->setVisible(true);
-        break;
-    case 2: // Opción "Capuccino"
-        ui->frCapuccino->setVisible(true);
-        break;
-    case 3: // Opción "Macchiato"
-        ui->frCaramelo->setVisible(true);
-        break;
-        // Puedes añadir más casos aquí para otros índices (ej: case 3:)
-    }
-}
-
-
 // pa que o que?
-void MainWindow::on_pushButton_clicked() {
+void MainWindow::on_pushButton_clicked()
+{
     QMessageBox::information(this, "Sistema Cafetería", "Fecha ingresada correctamente. ¡Bienvenido!");
 }
-
-
-
-
-
-
-
