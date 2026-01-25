@@ -22,7 +22,6 @@ public:
 
 private slots:
 
-    void on_pushButton_clicked();
     void on_InicioDia_clicked();
     void on_iniciarPedido_clicked();
     void on_btnAgregar_clicked();
@@ -30,6 +29,7 @@ private slots:
     void on_btnPagar_clicked();
     void on_btnCancelar_clicked();
     void botonPresionado();
+    void guardarDatosArchivo();
 
     //void on_comboBox_2_activated(int index);
 

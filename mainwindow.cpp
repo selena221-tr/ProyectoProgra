@@ -6,6 +6,7 @@
 #include <QLabel>       // ← AGREGADO (para los labels)
 #include <QLineEdit>    // ← AGREGADO (para ui->lineEdit)
 #include <QDate>        // ← AGREGADO (para mostrar fecha actual)
+#include <QFile>        //Para incluir archivos
 
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
@@ -110,14 +111,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
 
 }
 
-//ESTO VA A SER LA EDICIÓN DE LA PRIMERA PESTAÑA ******* 'page_inicioSistema' *******
 void MainWindow::on_InicioDia_clicked() {
-
-    if(ui->IngresoDelDia->text().isEmpty()){
-        QMessageBox::information(this, "Importante", "Ingrese una fecha antes de continuar");
-    } else {
-        ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
-    }
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
 }
 
 
@@ -130,7 +125,18 @@ void MainWindow::on_iniciarPedido_clicked(){
 //ESTO VA A SER LA EDICIÓN DE LA TERCERA PESTAÑA ******* 'page_menu' *******
 void MainWindow::on_btnAgregar_clicked(){
     actualizarFactura(); //se llama a la funcion antes de cambiar de página
-    ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
+    bool encontrado=false;
+    for (int i=0; i<contadores.size(); i++){
+        if (contadores[i]!=0){
+            encontrado=true;
+        }
+    }
+    if (!encontrado){
+        QMessageBox::information(this, "Importante", "Agregue productos para continuar");
+    } else {
+        ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
+    }
+
 }
 
 
@@ -140,15 +146,16 @@ void MainWindow::on_btnVolver_clicked() {
 }
 
 void MainWindow::on_btnCancelar_clicked() {
-    ui->stackedWidget->setCurrentWidget(ui->page_menu);
+    contadores = {0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < contadores.size(); i++) {
+        labels[i]->setText(QString::number(contadores[i]));
+    }
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
 }
 
-void MainWindow::on_btnPagar_clicked() {
-    QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
-}
 
 //ESTO ES PARA TODO EL MainWindow, Y ES PARA TODOS LO BOTONES QUE SON APLASTADOS
-void MainWindow::botonPresionado() { // cuando cualquiera de los botones es precionado
+void MainWindow::botonPresionado() { // cuando cualquiera de los botones es presionado
     QPushButton *boton = qobject_cast<QPushButton*>(sender()); // sender() devuelve el objeto que emitió la señal
                                                                // *buton es para decir cuál es el botón que aplastamos
     if (!boton) return; // si por alguna razón aplasta en algo que no sea botón se sale para evitar errores
@@ -214,13 +221,51 @@ void MainWindow::actualizarFactura(){
     // Esto quita bordes negros y asegura que el fondo sea limpio
 }
 
+void MainWindow::guardarDatosArchivo(){
+
+    QFile archivo("factura.txt");     //fstream archivo(ruta)
+    if (!archivo.open(QIODevice::Append|QIODevice::Text)){   //Si el archivo no se abre(en modo agregar lineas, no reescribir y considerado un texto plano)
+        qDebug()<<"Registro no encontrado"; //Uso qDebug que es un objeto parte de la clase QDebug, equivale a un cerr/cout en c++
+        return;
+        //QFile solo maneja bits, QTextstream sabe transformar esos bits en texto y QIODevice es como ios:: en c++
+    }
+    QTextStream agregar(&archivo); // esta es la parte donde se agrega el texto al archivo, asignare poniendo agregar<<
+    int filas = ui->facturaTabla->rowCount();
+    int columnas = ui->facturaTabla->columnCount();
+
+    for (int i = 0; i < filas; i++) {
+        agregar<<ui->Dia->date().toString("yyyy-MM-dd") << ";"; // saco la fecha del dateEdit en forma de cadena con un formato
+        for (int j = 0; j < columnas; j++) {
+            QTableWidgetItem *item = ui->facturaTabla->item(i, j);
+            //QTable WidgetItem es un objeto que representa una celda de la tabla, guarda TODA la info de la celda (color, alineación, texto)
+            //item es un puntero  a una celda, guarda la direccion de memoria de una celda en una posicion i, j de la tabla
+            //(usamos puntero porque en esta posicion puede estar vacia)
+            if (item) {  //si item no esta vacio
+                QString dato = item->text(); //Variable string dato que contiene el texto del item
+                agregar<<dato;
+            }
+            if (j < columnas - 1){
+                agregar<<";";
+            }
+        }
+        agregar<<"\n";
+    }
+    archivo.close();
+}
+
+void MainWindow::on_btnPagar_clicked() {
+    guardarDatosArchivo();
+    contadores = {0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < contadores.size(); i++) {
+        labels[i]->setText(QString::number(contadores[i]));
+    }
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+    QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
+}
+
+
 MainWindow::~MainWindow() // en si es para la memoria, se elimina a si mismo cuando se cierra el programa
 {
     delete ui;
 }
 
-// pa que o que?
-void MainWindow::on_pushButton_clicked()
-{
-    QMessageBox::information(this, "Sistema Cafetería", "Fecha ingresada correctamente. ¡Bienvenido!");
-}

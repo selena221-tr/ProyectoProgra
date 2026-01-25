@@ -150,17 +150,46 @@ color: rgb(40, 25, 20);</string>
          <string>Empecemos</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="IngresoDelDia">
+       <widget class="QDateEdit" name="Dia">
         <property name="geometry">
          <rect>
           <x>250</x>
           <y>140</y>
-          <width>251</width>
+          <width>231</width>
           <height>41</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="styleSheet">
-         <string notr="true">color: white; </string>
+         <string notr="true">color: white;
+</string>
+        </property>
+        <property name="wrapping">
+         <bool>false</bool>
+        </property>
+        <property name="frame">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+        <property name="showGroupSeparator" stdset="0">
+         <bool>false</bool>
+        </property>
+        <property name="calendarPopup">
+         <bool>false</bool>
+        </property>
+        <property name="date">
+         <date>
+          <year>2002</year>
+          <month>1</month>
+          <day>1</day>
+         </date>
         </property>
        </widget>
       </widget>
@@ -198,7 +227,7 @@ background-size: cover;</string>
        <property name="geometry">
         <rect>
          <x>470</x>
-         <y>240</y>
+         <y>260</y>
          <width>231</width>
          <height>61</height>
         </rect>
