@@ -12,6 +12,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
     ui->setupUi(this);
+    ui->Dia->setDate(QDate::currentDate());   //patra que al abrir la fecha se ponga la fecha actual, propiedades del Qdateedit
     contadores = {0, 0, 0, 0, 0, 0};
 
     ui->labelDescripcion->setVisible(false); // para que no se vea cuando el programa corra
@@ -441,6 +442,7 @@ void MainWindow::on_btnapagar_clicked() {
             }
         } else {
             QMessageBox::warning(this, "Error", "Contraseña incorrecta");
+            return;
         }
     QMessageBox::warning(this, "Saliendo", "Muchas gracias...");
     qApp->quit(); // cierra la aplicación
