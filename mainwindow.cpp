@@ -218,7 +218,6 @@ MainWindow::~MainWindow() {// en si es para el rendimiento de la memoria, se eli
     delete ui;             //cierra el programa
 }
 
-
 void MainWindow::on_comboBox_activated(int menu) {
 
     QPoint topLeftPosition(10, 50); // Coordenadas donde se mueve el seleccionado
@@ -429,8 +428,8 @@ void MainWindow::on_btnRegresar_clicked() {
     }
 }
 
+
 void MainWindow::on_btnapagar_clicked() {
-    bool si = false;
     bool ok;
     QMessageBox::StandardButton respuesta; // es un tipo de dato para que el usuario pueda escoger enytre si o no
     QString password = QInputDialog::getText(this, "Acceso", "Ingrese la contraseña:", QLineEdit::Password, "", &ok);
@@ -442,7 +441,6 @@ void MainWindow::on_btnapagar_clicked() {
             }
         } else {
             QMessageBox::warning(this, "Error", "Contraseña incorrecta");
-            return;
         }
     QMessageBox::warning(this, "Saliendo", "Muchas gracias...");
     qApp->quit(); // cierra la aplicación
