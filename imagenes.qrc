@@ -12,5 +12,9 @@
         <file>americano.png</file>
         <file>latte.png</file>
         <file>fondoCafe.png</file>
+        <file>fondocafe.jpg</file>
+        <file>fondolabel.jpg</file>
+        <file>fondos.jpg</file>
+        <file>FondoF.jpg</file>
     </qresource>
 </RCC>

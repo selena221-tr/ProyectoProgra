@@ -13,13 +13,16 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>751</width>
+      <width>731</width>
       <height>391</height>
      </rect>
     </property>
@@ -32,11 +35,11 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_inicioSistema">
      <property name="styleSheet">
-      <string notr="true">background: url(:/imagenes/imagenpedido.png);
+      <string notr="true">background: rgba(0,0,0,50);
 </string>
      </property>
      <widget class="QFrame" name="frame_4">
@@ -47,6 +50,10 @@
         <width>771</width>
         <height>401</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: url(:/imagenes/imagenpedido.png);
+background-color: rgba(0, 0, 0, 0);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -64,8 +71,7 @@
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background:rgba(0, 0, 0, 90); 
-</string>
+        <string notr="true">background: rgba(0, 0, 0, 70);</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Shape::StyledPanel</enum>
@@ -217,6 +223,9 @@ background-size: cover;</string>
       <property name="cursor">
        <cursorShape>ArrowCursor</cursorShape>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
       </property>
@@ -316,16 +325,22 @@ background: rgb(198, 165, 132);
         <bold>true</bold>
        </font>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::RightToLeft</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">border: 2px solid rgb(0, 0, 0); 
-background: rgba(222, 175, 110,50)
+background: rgba(222, 175, 110,50);
+color: black;
+qproperty-alignment: 'AlignLeft | AlignVCenter';
+
 </string>
       </property>
       <property name="text">
-       <string>MENÚ</string>
+       <string>                MENÚ</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignmentFlag::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QFrame" name="frMocha">
@@ -437,13 +452,32 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$3.50</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frLatte">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>490</x>
         <y>50</y>
-        <width>241</width>
+        <width>231</width>
         <height>131</height>
        </rect>
       </property>
@@ -461,7 +495,7 @@ border-color:black;
       <widget class="QLabel" name="lbLatte">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>10</y>
          <width>71</width>
          <height>111</height>
@@ -479,7 +513,7 @@ background-position: center;</string>
       <widget class="QPushButton" name="btnMasLatte">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>190</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
@@ -503,7 +537,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QLabel" name="lbLatteCont">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>140</x>
          <y>40</y>
          <width>31</width>
          <height>41</height>
@@ -525,7 +559,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosLatte">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>90</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
@@ -544,6 +578,25 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
        </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$3.00</string>
        </property>
       </widget>
      </widget>
@@ -656,6 +709,25 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$4.00</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="finPagMenu">
       <property name="geometry">
@@ -719,6 +791,7 @@ border:none;
          <string notr="true">    border-radius: 20px;
     border: 2px solid brown;
     background-color: rgba(255, 141, 121,180);
+	color: black;
 </string>
         </property>
         <property name="text">
@@ -836,6 +909,25 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$3.50</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frFrappe">
       <property name="geometry">
@@ -946,13 +1038,32 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$4.50</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QFrame" name="frAmericano">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>490</x>
         <y>190</y>
-        <width>241</width>
+        <width>231</width>
         <height>131</height>
        </rect>
       </property>
@@ -970,7 +1081,7 @@ border-color:black;
       <widget class="QLabel" name="lbAmericano">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>10</y>
          <width>71</width>
          <height>111</height>
@@ -988,7 +1099,7 @@ background-position: center;</string>
       <widget class="QPushButton" name="btnMasAmericano">
        <property name="geometry">
         <rect>
-         <x>200</x>
+         <x>190</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
@@ -1012,7 +1123,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QLabel" name="lbAmericanoCont">
        <property name="geometry">
         <rect>
-         <x>150</x>
+         <x>140</x>
          <y>40</y>
          <width>31</width>
          <height>41</height>
@@ -1034,7 +1145,7 @@ border-image: url(:/imagenes/mas.png) 0 0 0 0 stretch stretch;
       <widget class="QPushButton" name="btnMenosAmericano">
        <property name="geometry">
         <rect>
-         <x>100</x>
+         <x>90</x>
          <y>50</y>
          <width>31</width>
          <height>31</height>
@@ -1055,6 +1166,113 @@ border-image: url(:/imagenes/menos.png) 0 0 0 0 stretch stretch;
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>51</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">backgroung: grba(0,0,0,0);
+color: black;
+font-size: 20px;
+</string>
+       </property>
+       <property name="text">
+        <string>$2.50</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>20</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">    border-radius: 20px;
+    border: 2px solid brown;
+    background-color: rgba(255, 141, 121,180);
+	color: black;
+</string>
+      </property>
+      <property name="text">
+       <string>Buscar</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>20</y>
+        <width>151</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: 2px solid brown;
+color: black;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Ninguno</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Caffe Mocha</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Capuccino</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Caramel Macchiato</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Frappe</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Latte</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Americano</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="labelDescripcion">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>60</y>
+        <width>471</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: url(:/imagenes/FondoF.jpg);
+color: black;
+font-size: 18px;
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="page_Pedido">
@@ -1131,7 +1349,8 @@ background: rgba(0,0,0,80);
         </property>
         <property name="styleSheet">
          <string notr="true">border: 2px solid rgb(0, 0, 0); 
-background: rgba(222, 175, 110,50)
+background: rgba(222, 175, 110,50);
+color: black;
 </string>
         </property>
         <property name="text">
@@ -1159,7 +1378,9 @@ background: rgba(222, 175, 110,50)
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid black;</string>
+         <string notr="true">border: 2px solid black;
+background: rgba(222, 175, 110,50);
+color: black;</string>
         </property>
         <property name="text">
          <string>SEGUIR COMPRANDO</string>
@@ -1183,7 +1404,9 @@ background: rgba(222, 175, 110,50)
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid black;</string>
+         <string notr="true">border: 2px solid black;
+background: rgba(222, 175, 110,50);
+color: black;</string>
         </property>
         <property name="text">
          <string>PAGAR</string>
@@ -1207,7 +1430,9 @@ background: rgba(222, 175, 110,50)
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">border: 2px solid black;</string>
+         <string notr="true">border: 2px solid black;
+background: rgba(222, 175, 110,50);
+color: black;</string>
         </property>
         <property name="text">
          <string>CANCELAR PEDIDO</string>
@@ -1269,6 +1494,9 @@ background: rgba(222, 175, 110,50)
           <width>49</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: balck;</string>
         </property>
         <property name="text">
          <string>TOTAL</string>
@@ -1369,6 +1597,10 @@ background: rgba(222, 175, 110,50)
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background: rgba(222, 175, 110,50);
+color: black;</string>
+        </property>
         <property name="text">
          <string>TOTAL A PAGAR(incluido IVA)</string>
         </property>
@@ -1388,6 +1620,9 @@ background: rgba(222, 175, 110,50)
           <height>16777215</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <attribute name="horizontalHeaderMinimumSectionSize">
          <number>32</number>
         </attribute>
@@ -1405,7 +1640,7 @@ background: rgba(222, 175, 110,50)
         </attribute>
         <column>
          <property name="text">
-          <string>Productos</string>
+          <string notr="true">Cantidad</string>
          </property>
          <property name="font">
           <font>
@@ -1413,11 +1648,20 @@ background: rgba(222, 175, 110,50)
            <pointsize>12</pointsize>
            <italic>true</italic>
           </font>
+         </property>
+         <property name="foreground">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Cantidad</string>
+          <string notr="true">Productos</string>
          </property>
          <property name="font">
           <font>
@@ -1425,6 +1669,15 @@ background: rgba(222, 175, 110,50)
            <pointsize>12</pointsize>
            <italic>true</italic>
           </font>
+         </property>
+         <property name="foreground">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
          </property>
         </column>
         <column>
@@ -1438,6 +1691,15 @@ background: rgba(222, 175, 110,50)
            <italic>true</italic>
           </font>
          </property>
+         <property name="foreground">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </property>
         </column>
         <column>
          <property name="text">
@@ -1448,7 +1710,17 @@ background: rgba(222, 175, 110,50)
            <family>Lucida Calligraphy</family>
            <pointsize>12</pointsize>
            <italic>true</italic>
+           <underline>false</underline>
           </font>
+         </property>
+         <property name="foreground">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
          </property>
         </column>
        </widget>
@@ -1501,7 +1773,7 @@ background: rgba(222, 175, 110,50)
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

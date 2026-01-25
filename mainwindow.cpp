@@ -13,40 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     ui->setupUi(this);
     contadores = {0, 0, 0, 0, 0, 0};
 
-    // PARA CAMBIAR COLORES DE LA 'page_inicioPedido' ya sea botón o label
-    QPalette palette1 = ui->inicioPedido->palette();
-    palette1.setColor(QPalette::WindowText, Qt::black);  // Color del texto
-    ui->inicioPedido->setPalette(palette1);
-
-    ui->LsumaPagar->setStyleSheet("color: black;");
-
-
-    // PARA CAMBIAR COLORES DE LA 'page_menu' ya sea botón o label conf de la pag
-    QPalette palette2 = ui->inicioPagMenu->palette();
-    palette2.setColor(QPalette::WindowText, Qt::black);
-    ui->inicioPagMenu->setPalette(palette2);
-
-    ui->btnAgregar->setStyleSheet("color: black;");
-
-
-    // PARA HACER TRANSPARTENTE DE LA 'page_pedido' FRAME 5
-    ui->frame_2->setStyleSheet("background-color: transparent;");
-
-    QPalette paletteBtn1 = ui->btnCancelar->palette();
-    paletteBtn1.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnCancelar->setPalette(paletteBtn1);
-
-    QPalette paletteBtn2 = ui->btnPagar->palette();
-    paletteBtn2.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnPagar->setPalette(paletteBtn2);
-
-    QPalette paletteBtn3 = ui->btnVolver->palette();
-    paletteBtn3.setColor(QPalette::ButtonText, Qt::black);  // ← CAMBIADO
-    ui->btnVolver->setPalette(paletteBtn3);
-
-
-    // PARA HACER TRANSPARTENTE DE LA 'page_inicioSistema' FRAME 5
-    ui->frame_4->setStyleSheet("background-color: transparent;");
+    ui->labelDescripcion->setVisible(false);
+    ui->labelDescripcion->setWordWrap(true);
 
     // BOTONES Y ACCIONES
     labels = {
@@ -146,11 +114,16 @@ void MainWindow::on_btnVolver_clicked() {
 }
 
 void MainWindow::on_btnCancelar_clicked() {
-    contadores = {0, 0, 0, 0, 0, 0};
-    for (int i = 0; i < contadores.size(); i++) {
-        labels[i]->setText(QString::number(contadores[i]));
-    }
+    ui->stackedWidget->setCurrentWidget(ui->page_menu);
+    // Regresa al MENÚ, no a la página de pedido donde ya estás
     ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+
+    // Limpia solo los datos que guardaste en el vector 'labels'
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
+        contadores[i] = 0;  //los contadores pa calcular el pago
+        labels[i]->setText("0");    // y los Labels de los contadores
+        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
+    }
 }
 
 
@@ -254,18 +227,176 @@ void MainWindow::guardarDatosArchivo(){
 }
 
 void MainWindow::on_btnPagar_clicked() {
-    guardarDatosArchivo();
-    contadores = {0, 0, 0, 0, 0, 0};
-    for (int i = 0; i < contadores.size(); i++) {
-        labels[i]->setText(QString::number(contadores[i]));
-    }
-    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
     QMessageBox::information(this, "Pago", "¡Pagó con éxito!");
+    ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
+        contadores[i] = 0; //los contadores pa calcular el pago
+        labels[i]->setText("0"); // y los Labels de los contadores
+        labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
+    }
 }
 
 
-MainWindow::~MainWindow() // en si es para la memoria, se elimina a si mismo cuando se cierra el programa
-{
+MainWindow::~MainWindow() {// en si es para la memoria, se elimina a si mismo cuando se cierra el programa
     delete ui;
 }
 
+void MainWindow::on_comboBox_activated(int index) {
+
+    QPoint topLeftPosition(10, 50); // Coordenadas donde se mueve el seleccionado
+
+    // Ocultar todos los widgets antes que nada
+    ui->frAmericano->setVisible(false);
+    ui->frCapuccino->setVisible(false);
+    ui->frCaramelo->setVisible(false);
+    ui->frFrappe->setVisible(false);
+    ui->frLatte->setVisible(false);
+    ui->frMocha->setVisible(false);
+
+    // Ocultar el label de descripción por defecto
+
+
+    QWidget *posicion = nullptr;
+
+    switch (index) {
+    case 0: // Opción "Todos"
+        // ====== TUS POSICIONES ORIGINALES ======
+        // Fila 1
+        ui->frMocha->move(10, 50);        // CAFFE MOCHA
+        ui->frCaramelo->move(250, 50);    // CARAMEL MACCHIATO
+        ui->frLatte->move(490, 50);       // LATTE
+
+        // Fila 2
+        ui->frCapuccino->move(10, 190);   // CAPPUCCINO
+        ui->frFrappe->move(250, 190);     // FRAPPE
+        ui->frAmericano->move(490, 190);  // AMERICANO
+
+        // Mostrar todos
+        ui->frAmericano->setVisible(true);
+        ui->frCapuccino->setVisible(true);
+        ui->frCaramelo->setVisible(true);
+        ui->frFrappe->setVisible(true);
+        ui->frLatte->setVisible(true);
+        ui->frMocha->setVisible(true);
+
+        ui->labelDescripcion->setVisible(false);
+        break;
+
+    case 1: // Opción "Mocha"
+    {
+        ui->frMocha->setVisible(true);
+        posicion = ui->frMocha;
+
+        QString textoDescripcion =
+            "Caffe Macchiato: \n\n"
+            " El caffè macchiato, que significa \"manchado\" en italiano, "
+            " nació en los años 80 para diferenciar un espresso solo "
+            " de uno con un toque de leche. Es una pequeña y potente "
+            " bebida que equilibra un espresso con una mancha de "
+            " espuma de leche, ideal para la tarde, a diferencia "
+            " del capuchino.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+        ui->labelDescripcion->setWordWrap(true);
+        break;
+    }
+
+    case 2: // Opción "Capuccino"
+    {
+        ui->frCapuccino->setVisible(true);
+        posicion = ui->frCapuccino;
+
+        QString textoDescripcion =
+            "Caffe Capuccino: \n\n"
+            " El café capuchino debe su nombre al color del hábito de los monjes "
+            " capuchinos (franciscanos), ya que al añadir leche al café intenso, "
+            " la mezcla resultaba en un marrón rojizo claro similar a sus túnicas. "
+            " Aunque es un ícono italiano, la leyenda sitúa su origen en Viena, "
+            " Austria, tras la batalla de 1683.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+
+        break;
+    }
+
+    case 3: // Opción "Caramelo"
+    {
+        ui->frCaramelo->setVisible(true);
+        posicion = ui->frCaramelo;
+
+        QString textoDescripcion =
+            "Caffe Carmelo: \n\n"
+            " El nombre Carmelo proviene del hebreo Karmel o Karm-Ēl, que significa "
+            " «jardín», «huerto» o «viñedo de Dios». Hace referencia a la exuberante "
+            " vegetación del Monte Carmelo en Israel, lugar donde se originó la orden "
+            " religiosa en el siglo XII, buscando vivir en oración contemplativa.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+        break;
+    }
+
+    case 4: // Opción "Frappe"
+    {
+        ui->frFrappe->setVisible(true);
+        posicion = ui->frFrappe;
+
+        QString textoDescripcion =
+            "Caffe Frappe: \n\n"
+            " El café frappé se inventó por accidente en 1957 durante la "
+            " Feria Internacional de Tesalónica en Grecia. Dimitris Vakondios, "
+            " un representante de Nestlé, no encontró agua caliente para su "
+            " café soluble y decidió mezclarlo con agua fría y cubitos de "
+            " hielo en una coctelera, creando así la famosa bebida espumosa.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+        break;
+    }
+
+    case 5: // Opción "Latte"
+    {
+        ui->frLatte->setVisible(true);
+        posicion = ui->frLatte;
+
+        QString textoDescripcion =
+            "Caffe Latte: \n\n"
+            " Aunque la palabra latte proviene del italiano \"caffè latte\" "
+            " (café con leche), la versión moderna y popular del latte con "
+            " espuma cremosa se popularizó en Seattle, Estados Unidos, durante "
+            " la década de 1980. Además, es conocido por ser una bebida donde "
+            " la leche predomina sobre el café, llevando más leche vaporizada "
+            " que un cappuccino.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+        break;
+    }
+
+    case 6: // Opción "Americano"
+    {
+        ui->frAmericano->setVisible(true);
+        posicion = ui->frAmericano;
+
+        QString textoDescripcion =
+            "Caffe Americano: \n\n"
+            " Un dato curioso de Estados Unidos es que, a pesar de ser la "
+            " cuna del inglés, no tiene un idioma oficial establecido a "
+            " nivel federal por ley. Aunque más del 78% habla inglés, el "
+            " país se caracteriza por su gran diversidad lingüística y "
+            " cultural. Además, los estadounidenses devoran unos 350 "
+            " porciones de pizza cada segundo.";
+
+        ui->labelDescripcion->setText(textoDescripcion);
+        ui->labelDescripcion->setVisible(true);
+        break;
+    }
+    }
+
+    if (posicion != nullptr) {
+        posicion->move(topLeftPosition);
+        posicion->raise();
+    }
+}

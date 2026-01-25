@@ -33,6 +33,10 @@ private slots:
 
     //void on_comboBox_2_activated(int index);
 
+    void on_facturaTabla_cellActivated(int row, int column);
+
+    void on_comboBox_activated(int index);
+
 private:
     Ui::MainWindow *ui;
 
