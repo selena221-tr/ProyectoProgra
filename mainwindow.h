@@ -33,11 +33,7 @@ private slots:
     void actualizarFactura();
     void resumen();
     void on_comboBox_activated(int index);
-
-    void on_pushButton_clicked();
-
     void on_btnRegresar_clicked();
-
     void on_btnapagar_clicked();
 
 private:
@@ -45,7 +41,8 @@ private:
     QVector<QString> nombres;
     QVector<int> contadoresInforme;
     QVector<int> contadores;                 // cantidades por producto
-    QVector<QLabel*> labels;                  // labels de cantidades
+    QVector<QLabel*> labels;                // labels de cantidades
+    QVector<QFrame*> frames;
     QVector<QPushButton*> botonesMenos;
     QVector<QPushButton*> botonesMas;
 

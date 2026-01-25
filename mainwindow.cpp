@@ -12,13 +12,12 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    ui->Dia->setDate(QDate::currentDate());   //patra que al abrir la fecha se ponga la fecha actual, propiedades del Qdateedit
+    ui->Dia->setDate(QDate::currentDate());
     contadores = {0, 0, 0, 0, 0, 0};
 
-    ui->labelDescripcion->setVisible(false); // para que no se vea cuando el programa corra
-    ui->labelDescripcion->setWordWrap(true); // para que se ajuste al label
+    ui->labelDescripcion->setVisible(false);
+    ui->labelDescripcion->setWordWrap(true);
 
-    // BOTONES Y ACCIONES
 
     nombres = {"Mocha","Latte","Capuccino","Americano","Caramelo","Frappe"};
 
@@ -30,6 +29,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
         ui->lbCarameloCont,
         ui->lbFrappeCont
     };
+
+    frames = {
+        ui->frMocha,
+        ui->frLatte,
+        ui->frCapuccino,
+        ui->frAmericano,
+        ui->frCaramelo,
+        ui->frFrappe
+    };
+
 
     botonesMenos = {
         ui->btnMenosMocha,
@@ -59,20 +68,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
     }
 }
 
+//está en la página 0, va a la 1
 void MainWindow::on_InicioDia_clicked() {
     ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
 }
 
 
-//ESTO VA A SER LA EDICIÓN DE LA SEGUNDA PESTAÑA ******* 'page_inicioPedido' *******
+//Va de la segunda pestaña "Iniciar Pedido" a la pestaña del menú (1 a 2)
 void MainWindow::on_iniciarPedido_clicked(){
     ui->stackedWidget->setCurrentWidget(ui->page_menu);
 }
 
 
-//ESTO VA A SER LA EDICIÓN DE LA TERCERA PESTAÑA ******* 'page_menu' *******
+//Va del menú a la página de la factura, controla que exista un pedido (2 a 3)
 void MainWindow::on_btnAgregar_clicked(){
-    actualizarFactura(); //se llama a la funcion antes de cambiar de página
+    actualizarFactura();      //se llama a la funcion antes de cambiar de página
     bool encontrado=false;
     for (int i=0; i<contadores.size(); i++){
         if (contadores[i]!=0){
@@ -87,33 +97,31 @@ void MainWindow::on_btnAgregar_clicked(){
 }
 
 
-//ESTO VA A SER LA EDICIÓN DE LA CUARTA PESTAÑA ******* 'page_pedido' *******
+//está en la pagina 3 y vuele a la 2 para seguir agregando (3 a 2)
 void MainWindow::on_btnVolver_clicked() {
     ui->stackedWidget->setCurrentWidget(ui->page_menu);
 }
 
+//está en la página 3 y va a la 1, cancela el pedido. Limpia todo  (3 a 1)
 void MainWindow::on_btnCancelar_clicked() {
-    //ui->stackedWidget->setCurrentWidget(ui->page_menu);
-    // Regresa al MENÚ, no a la página de pedido donde ya estás
     ui->stackedWidget->setCurrentWidget(ui->page_inicioPedido);
 
-    // Limpia solo los datos que guardaste en el vector 'labels'
-    for (int i = 0; i < contadores.size(); i++){ // esto lo hago para que todos los contadores de los productos se reinicien a 0
-        contadores[i] = 0;  //los contadores pa calcular el pago
-        labels[i]->setText("0");    // y los Labels de los contadores
+    for (int i = 0; i < contadores.size(); i++){ // esto lo hago limpiar todo
+        contadores[i] = 0;  //todos los contadores a 0
+        labels[i]->setText("0");    // los Labels de los contadores a 0
         labels[i]->setStyleSheet("color: white;"); // regreso a blanco por estética :)
     }
 }
 
 
-//ESTO ES PARA TODO EL MainWindow, Y ES PARA TODOS LO BOTONES QUE SON APLASTADOS
+//Esto es la lógica que aplicamos a los botones de más y menos en la página de menú
 void MainWindow::botonPresionado() { // cuando cualquiera de los botones es presionado
     QPushButton *boton = qobject_cast<QPushButton*>(sender()); // sender() devuelve el objeto que emitió la señal
-                                                               // *buton es para decir cuál es el botón que aplastamos
+                                                               // *buton es el puntero que indica qué botón que aplastamos
     if (!boton) return; // si por alguna razón aplasta en algo que no sea botón se sale para evitar errores
 
-    int id = boton->property("labelID").toInt(); //para que haga lo que yo le diga que haga el botón
-    int accion = boton->property("accion").toInt(); // 0 = + , 1 = -; saber si suma o resta
+    int id = boton->property("labelID").toInt(); //sabiendo que botón fue aplastado, me dice a que label le corresponde
+    int accion = boton->property("accion").toInt(); //saber si el boton aplastado tiene la funcion de suma o resta
 
     if (accion == 0) {
         contadores[id]++;
@@ -125,14 +133,9 @@ void MainWindow::botonPresionado() { // cuando cualquiera de los botones es pres
         }
     }
 
-    // Actualizar label
-    labels[id]->setText(QString::number(contadores[id])); //[id] para encontar el correcto
-                                                          // Qstring::number(..) convierte int a texto
-                                                          // setText para que muetsre por pantalla
+    labels[id]->setText(QString::number(contadores[id])); // Actualizar label
 
-    // Habilitar / deshabilitar botón menos
-    //botonesMenos[id]->setEnabled(contadores[id] > 0); //si es 0 desactivado, y si es > 0 activado :)
-
+    //Cambiar el color para simular el habilitado o deshabilitado
     if(contadores[id] > 0){
         labels[id]->setStyleSheet("color: black;");
     }else{
@@ -144,8 +147,7 @@ void MainWindow::actualizarFactura(){
     //primero la tabla se limpia para que no se repitan los datos
     ui->facturaTabla->setRowCount(0);
 
-    //se declaran los datos que usamos para llenar la tabla(los productos del menu y sus precios, ya establecidos)
-    QVector<QString> nombres = {"Mocha","Latte","Capuccino","Americano","Caramelo","Frappe"};
+    //se declaran los datos que usamos para llenar la tabla( precios, ya establecidos)
     QVector<double> precios = {3.50, 3.00, 3.50, 2.50, 4.00, 4.50};
     double totalFinal = 0;
 
@@ -169,7 +171,6 @@ void MainWindow::actualizarFactura(){
 
     //actualizamos el label del total final para que muestre el monto total
     ui->label_5->setText("$"+QString::number(totalFinal, 'f',2));
-    // Esto quita bordes negros y asegura que el fondo sea limpio
 }
 
 void MainWindow::guardarDatosArchivo(){
@@ -215,21 +216,15 @@ void MainWindow::on_btnPagar_clicked() {
     }
 }
 
-MainWindow::~MainWindow() {// en si es para el rendimiento de la memoria, se elimina a si mismo cuando se
-    delete ui;             //cierra el programa
-}
 
 void MainWindow::on_comboBox_activated(int menu) {
 
     QPoint topLeftPosition(10, 50); // Coordenadas donde se mueve el seleccionado
 
     // Ocultar todos los widgets antes que nada
-    ui->frAmericano->setVisible(false);
-    ui->frCapuccino->setVisible(false);
-    ui->frCaramelo->setVisible(false);
-    ui->frFrappe->setVisible(false);
-    ui->frLatte->setVisible(false);
-    ui->frMocha->setVisible(false);
+    for (int h=0; h<frames.size(); h++){
+        frames[h]->setVisible(false);
+    }
 
     // Ocultar el label de descripción por defecto
 
@@ -240,7 +235,7 @@ void MainWindow::on_comboBox_activated(int menu) {
 
     switch (menu) {
     case 0: // Opción "ninguno"
-        // ====== TUS POSICIONES ORIGINALES ======
+        // POSICIONES ORIGINALES
         // Fila 1
         ui->frMocha->move(10, 50);        // CAFFE MOCHA
         ui->frCaramelo->move(250, 50);    // CARAMEL MACCHIATO
@@ -252,12 +247,9 @@ void MainWindow::on_comboBox_activated(int menu) {
         ui->frAmericano->move(490, 190);  // AMERICANO
 
         // Mostrar todos
-        ui->frAmericano->setVisible(true);
-        ui->frCapuccino->setVisible(true);
-        ui->frCaramelo->setVisible(true);
-        ui->frFrappe->setVisible(true);
-        ui->frLatte->setVisible(true);
-        ui->frMocha->setVisible(true);
+        for (int l=0; l<frames.size(); l++){
+            frames[l]->setVisible(true);
+        }
 
         ui->labelDescripcion->setVisible(false);
         break;
@@ -432,7 +424,7 @@ void MainWindow::on_btnRegresar_clicked() {
 
 void MainWindow::on_btnapagar_clicked() {
     bool ok;
-    QMessageBox::StandardButton respuesta; // es un tipo de dato para que el usuario pueda escoger enytre si o no
+    QMessageBox::StandardButton respuesta; // es un tipo de dato para que el usuario pueda escoger entre si o no
     QString password = QInputDialog::getText(this, "Acceso", "Ingrese la contraseña:", QLineEdit::Password, "", &ok);
     if (ok) {
         if (password == "1234") {
@@ -447,5 +439,9 @@ void MainWindow::on_btnapagar_clicked() {
     QMessageBox::warning(this, "Saliendo", "Muchas gracias...");
     qApp->quit(); // cierra la aplicación
     }
+}
+
+MainWindow::~MainWindow() {// en si es para el rendimiento de la memoria, se elimina a si mismo cuando se
+    delete ui;             //cierra el programa
 }
 
