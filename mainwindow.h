@@ -21,7 +21,6 @@ public:
     ~MainWindow();
 
 private slots:
-
     void on_InicioDia_clicked();
     void on_iniciarPedido_clicked();
     void on_btnAgregar_clicked();
@@ -45,7 +44,5 @@ private:
     QVector<QFrame*> frames;
     QVector<QPushButton*> botonesMenos;
     QVector<QPushButton*> botonesMas;
-
-
 };
 #endif // MAINWINDOW_H

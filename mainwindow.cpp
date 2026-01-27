@@ -10,13 +10,13 @@
 #include <QInputDialog> //Para que salga la alerta con diálogo
 
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainWindow) {
-    ui->setupUi(this);
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
+    ui->setupUi(this); // para que salgan las cosas, botones, labels y todo eso
     ui->Dia->setDate(QDate::currentDate());
     contadores = {0, 0, 0, 0, 0, 0};
 
-    ui->labelDescripcion->setVisible(false);
-    ui->labelDescripcion->setWordWrap(true);
+    ui->labelDescripcion->setVisible(false); // para que no se vea al inicializar
+    ui->labelDescripcion->setWordWrap(true); // para activar el salto automático de cada línea dentro del label
 
 
     nombres = {"Mocha","Latte","Capuccino","Americano","Caramelo","Frappe"};
@@ -63,8 +63,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
         botonesMas[i]->setProperty("labelID", i);
         botonesMas[i]->setProperty("accion", 0);
         botonesMenos[i]->setProperty("accion",1);
-        connect(botonesMas[i],  &QPushButton::clicked, this, &MainWindow::botonPresionado);
-        connect(botonesMenos[i],  &QPushButton::clicked, this, &MainWindow::botonPresionado);
+        connect(botonesMas[i], &QPushButton::clicked, this, &MainWindow::botonPresionado);
+        connect(botonesMenos[i], &QPushButton::clicked, this, &MainWindow::botonPresionado);
     }
 }
 
@@ -82,16 +82,16 @@ void MainWindow::on_iniciarPedido_clicked(){
 
 //Va del menú a la página de la factura, controla que exista un pedido (2 a 3)
 void MainWindow::on_btnAgregar_clicked(){
-    actualizarFactura();      //se llama a la funcion antes de cambiar de página
-    bool encontrado=false;
-    for (int i=0; i<contadores.size(); i++){
-        if (contadores[i]!=0){
-            encontrado=true;
+    actualizarFactura(); // Llamo a la función actualizo antes de todo.
+    bool encontrar = false;
+    for(int i = 0; i < contadores.size(); i++){
+        if(contadores[i] != 0){
+            encontrar = true;
         }
     }
-    if (!encontrado){
-        QMessageBox::information(this, "Importante", "Agregue productos para continuar");
-    } else {
+    if(!encontrar){
+        QMessageBox::information(this, "Error", "No se aceptan valores vacíos");
+    }else{
         ui->stackedWidget->setCurrentWidget(ui->page_Pedido);
     }
 }
@@ -116,14 +116,18 @@ void MainWindow::on_btnCancelar_clicked() {
 
 //Esto es la lógica que aplicamos a los botones de más y menos en la página de menú
 void MainWindow::botonPresionado() { // cuando cualquiera de los botones es presionado
-    QPushButton *boton = qobject_cast<QPushButton*>(sender()); // sender() devuelve el objeto que emitió la señal
-                                                               // *buton es el puntero que indica qué botón que aplastamos
+    QPushButton *boton = qobject_cast<QPushButton *> (sender()); // sender() devuelve el objeto que emitió la señal
+                                                                 // *buton es el puntero que indica qué botón que aplastamos
     if (!boton) return; // si por alguna razón aplasta en algo que no sea botón se sale para evitar errores
 
     int id = boton->property("labelID").toInt(); //sabiendo que botón fue aplastado, me dice a que label le corresponde
     int accion = boton->property("accion").toInt(); //saber si el boton aplastado tiene la funcion de suma o resta
 
     if (accion == 0) {
+        if (contadores[id] >= 15){ // si es que están más de 15 salta esto, cuenta desde 0, por eso es >=
+            QMessageBox::warning(this, "Error", "No se pueden colocar más de 15 productos");
+            return;
+        }
         contadores[id]++;
     } else {
         if (contadores[id] > 0) {
@@ -166,7 +170,7 @@ void MainWindow::actualizarFactura(){
             ui->facturaTabla->setItem(fila, 1, new QTableWidgetItem(QString::number(contadores[i])));
             ui->facturaTabla->setItem(fila, 2, new QTableWidgetItem("$"+QString::number(precios[i], 'f', 2)));
             ui->facturaTabla->setItem(fila, 3, new QTableWidgetItem("$"+QString::number(subtotal, 'f', 2)));
-        }                                                                                       //fuerza a que salgan 2 decimales, lo estandar para dinero
+        }                  // ' f ' fuerza a que salgan 2 decimales, lo estandar para dinero
     }
 
     //actualizamos el label del total final para que muestre el monto total
