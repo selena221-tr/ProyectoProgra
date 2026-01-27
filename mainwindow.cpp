@@ -379,13 +379,20 @@ void MainWindow::on_comboBox_activated(int menu) {
 void MainWindow::resumen(){
     float total=0;
     contadoresInforme = QVector<int>(nombres.size(), 0);
-    int indiceMejor=0;
+
+
     QFile archivo("factura.txt");
     if (!archivo.open(QIODevice::ReadOnly|QIODevice::Text)){
-        qDebug()<<"Registro no encontrado";
-        //return;
+        QMessageBox::warning(this, "Error", "No se pudo abrir el archivo");
+        return;
     }
     QTextStream leer(&archivo);
+    if (leer.atEnd()) {
+        QMessageBox::information(this, "Resumen", "No se han registrado productos");
+        archivo.close();
+        return;
+    }
+
     while (!leer.atEnd()){
         QString linea= leer.readLine();
         QStringList datos = linea.split(";");
@@ -393,22 +400,32 @@ void MainWindow::resumen(){
 
         total=total+datos[4].remove("$").toFloat();
         for (int i=0; i<nombres.size(); i++){
-            if (datos[2]==nombres[i]){
-                contadoresInforme[i]++;
+            if (datos[1]==nombres[i]){
+                contadoresInforme[i]+=datos[2].toInt();
                 break;
             }
         }
 
     }
-    for (int j=1; j<contadoresInforme.size(); j++){
-        if (contadoresInforme[j]>contadoresInforme[indiceMejor]){
-            indiceMejor=j;
-        }
-    }
     archivo.close();
 
-    QString info= "Producto mejor vendido en el día: " + nombres[indiceMejor] + "\n"
-                                                                                 "Total recaudado: $" + QString::number(total, 'f', 2);
+    int Mejor=contadoresInforme[0];
+    int indice=0;
+    QString info1 ="";
+
+    for (int j=1; j<contadoresInforme.size(); j++){
+        if (contadoresInforme[j]>Mejor){
+            Mejor=contadoresInforme[j];
+            indice=j;
+            info1 ="";
+        } else if (contadoresInforme[j]==Mejor){
+            info1+= "/" +nombres[j];
+        }
+    }
+
+
+    QString info= "Producto mejor vendido en el día: " + nombres[indice] + info1 + "\n"
+                                                                                    "Total recaudado: $" + QString::number(total, 'f', 2);
     QMessageBox::information(this, "Resumen", info);
 
 
